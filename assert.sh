@@ -26,6 +26,12 @@ function assert_file_exists() {
   fi
 }
 
+function assert_number {
+  if ! grep -qE '[0-9]{1,}' <<< "${1}"; then
+    error "${1} is not a number"
+  fi
+}
+
 function assert_installed () {
   local application="${1:?No application to assert supplied}"
   if ! command -v "${application}" >/dev/null; then
