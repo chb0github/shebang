@@ -7,6 +7,10 @@ function warn() {
   echo -n "\033[1;33m$(date -u +"%Y-%m-%dT%H:%M:%SZ") WARN:\033[0m ${*}"  >&2
 }
 
+function assert_zulu_time {
+  local zulu_format='\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2]\d|3[0-1])T(?:[0-1]\d|2[0-3]):[0-5]\d:[0-5]\dZ'
+  grep -qE "${zulu_format}" <<< "${1}" || error "'${1}' is not in zulu time"
+}
 
 function assert_file_not_empty() {
   local file=${1:?No file supplied}
