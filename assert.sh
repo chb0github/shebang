@@ -21,12 +21,16 @@ function assert() {
 }
 
 function assert_file_exists() {
-  assert "test -f ${1}" "${1} doesn't exist "
+  if ! test -f "${1:?no filed supplied to assert}"; then
+    error "${1} doesn't exist "
+  fi
 }
 
 function assert_installed () {
   local application="${1:?No application to assert supplied}"
-  assert "command -v ${application} >/dev/null" "you must install ${application}"
+  if ! command -v "${application}" >/dev/null; then
+    error "${application} not installed"
+  fi
 }
 
 function assert_not_empty() {
