@@ -1,7 +1,7 @@
 
 cache() {
   local home=${HOME:-"$(echo ~)"}
-  local cache_dir="${home}/.cache/${1:?you must name your cache}"
+  local cache_dir="${home}/.cache"
   local file
   mkdir -p "${cache_dir}"
   file="${cache_dir}/$(printf "%s" "${@}")"
