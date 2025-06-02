@@ -53,3 +53,8 @@ function assert_file_pattern() {
   local msg="${2}"
   assert "! grep -m 1 -qvE '${pattern}' '${pattern}'" "${msg}"
 }
+
+function assert_dir {
+  local d=${1:?No directory supplied}
+  assert "test -d '${d}'" "${d} is not a directory"
+}

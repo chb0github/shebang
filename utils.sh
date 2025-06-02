@@ -9,12 +9,8 @@ function join() {
 function lines() {
   wc -l "${1:?no input for counting lines}"| cut -d' ' -f1
 }
-
-function error() {
-  echo -n "\033[0;31m$(date -u +"%Y-%m-%dT%H:%M:%SZ") ERROR:\033[0m ${*}"  >&2
-  return 255 # by using this code, if an assertion occurs xargs will immediately halt
-}
-
-function warn() {
-  echo -n "\033[1;33m$(date -u +"%Y-%m-%dT%H:%M:%SZ") WARN:\033[0m ${*}"  >&2
+function num_file_in_dir {
+  local d="${1:?no directory supplied}"
+  # shellcheck disable=SC2012
+  ls -f "${d}" | wc -l
 }
