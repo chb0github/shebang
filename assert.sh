@@ -8,7 +8,7 @@ function warn() {
 }
 
 function assert_zulu_time {
-  local zulu_format='\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2]\d|3[0-1])T(?:[0-1]\d|2[0-3]):[0-5]\d:[0-5]\dZ'
+  local zulu_format='^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])Z$'
   grep -qE "${zulu_format}" <<< "${1}" || error "'${1}' is not in zulu time"
 }
 
