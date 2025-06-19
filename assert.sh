@@ -1,12 +1,3 @@
-function error() {
-  echo -n "\033[0;31m$(date -u +"%Y-%m-%dT%H:%M:%SZ") ERROR:\033[0m ${*}"  >&2
-  return 255 # by using this code, if an assertion occurs xargs will immediately halt
-}
-
-function warn() {
-  echo -n "\033[1;33m$(date -u +"%Y-%m-%dT%H:%M:%SZ") WARN:\033[0m ${*}"  >&2
-}
-
 function assert_zulu_time {
   local zulu_format='^([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])Z$'
   grep -qE "${zulu_format}" <<< "${1}" || error "'${1}' is not in zulu time"
